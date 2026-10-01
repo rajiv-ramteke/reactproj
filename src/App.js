@@ -1,24 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import Form from "./Components/Form";
+import { TodoList } from "./Components/TodoList";
+import { Home } from "./Components/Home";
+import { About } from "./Components/About";
+import { Contact } from "./Components/Contact";
+import { Route, Routes, } from "react-router-dom";
+import { CompA } from "./Components/CompA";
+import './App.css'
+import { createContext } from "react";
+import FetchApi from "./Components/FetchApi";
 
-function App() {
+export const context1=createContext();
+export const store=createContext();
+function App(){
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+    {/* <TodoList/> */}
+      {/* <Form/> */}
+      <Routes>
+        <Route path="/" element={<Home/>}/>
+        <Route path="/about" element={<About/>}/>
+        <Route path="/contact" element={<Contact/>}/>
+      </Routes>
+      <context1.Provider value="priya">
+        <store.Provider value={{fname:"priyanka",lname:"sawai"}}>
+            <CompA/>      
+        </store.Provider>
+      </context1.Provider>     
+      <FetchApi/>
+    </>
   );
 }
 
